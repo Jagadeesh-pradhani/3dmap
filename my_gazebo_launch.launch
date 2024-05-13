@@ -1,0 +1,19 @@
+<launch>
+  <!-- Другие настройки roslaunch, если есть -->
+
+  <env name="__GLX_VENDOR_LIBRARY_NAME" value="nvidia"/>
+  <env name="__NV_PRIME_RENDER_OFFLOAD" value="1"/>
+
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="--verbose /home/aleksey.kravtsov/ardupilot_gazebo/worlds/iris_arducopter_runway.world"/>
+  
+  <node name="mavros" pkg="mavros" type="mavros_node" output="screen">
+    <param name="fcu_url" value="udp://localhost:14540@127.0.0.1:14557"/>
+    <param name="gcs_url" value=""/>
+    <param name="fcu_protocol" value="udpinet"/>
+    <param name="fcu_wait_timeout" value="10"/>
+    <param name="enable_lockstep" value="false"/>
+    <param name="enable_rosinterface" value="true"/>
+    <param name="rosinterface_plugin" value="mavros"/>
+  </node>
+</launch>
+
